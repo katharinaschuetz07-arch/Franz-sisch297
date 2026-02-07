@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Französisch Exklusiv v1.1.7</title>
+    <style>
+        :root { --gold: #D4AF37; --btn-height: 36px; }
+        body {
+            background: #000;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            min-height: 100vh; margin: 0; font-family: 'Times New Roman', Times, serif;
+        }
+        .app-container {
+            width: 345px; margin-top: 20px; background: radial-gradient(circle at center, #0c1a2b 0%, #000 100%);
+            border: 4px solid var(--gold); border-radius: 60px; overflow: hidden;
+            display: flex; flex-direction: column; padding-top: 15px; padding-bottom: 25px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.9), 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+        header { text-align: center; position: relative; padding-bottom: 5px; }
+        .ornament-l, .ornament-r { position: absolute; top: 15px; color: var(--gold); font-size: 1.6em; opacity: 0.8; }
+        .ornament-l { left: 30px; } .ornament-r { right: 30px; }
+        header h1 { color: var(--gold); margin: 0; font-size: 1.6em; text-transform: uppercase; letter-spacing: 3px; }
+        .sub-header { color: var(--gold); font-size: 0.8em; text-transform: uppercase; }
+        .version-info { color: var(--gold); font-size: 0.65em; opacity: 0.5; margin-bottom: 10px; }
+        .divider { width: 65%; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 5px auto 15px auto; }
+        .menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 0 25px 15px 25px; }
+        .premium-btn {
+            background: rgba(255,255,255,0.03); color: var(--gold); border: 1px solid rgba(212, 175, 55, 0.4);
+            height: var(--btn-height); font-size: 0.75em; font-weight: bold; border-radius: 12px; cursor: pointer; text-transform: uppercase;
+        }
+        .flashcard {
+            width: 290px; height: 145px; background: linear-gradient(145deg, #0a0a0a, #000);
+            border: 1px solid var(--gold); border-radius: 35px; margin: 10px auto;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; cursor: pointer; position: relative;
+        }
+        .category-label { position: absolute; top: 12px; left: 20px; color: var(--gold); font-size: 0.55em; letter-spacing: 1px; font-weight: bold; text-transform: uppercase; opacity: 0.7; }
+        #phrase-fr { font-size: 1.25em; color: var(--gold); font-weight: bold; margin-bottom: 2px; }
+        #phrase-phonetic { font-size: 0.75em; color: var(--gold); opacity: 0.7; font-style: italic; margin-bottom: 6px; }
+        #phrase-de { font-size: 0.85em; color: #fff; opacity: 0.6; }
+        .card-counter-inside { position: absolute; bottom: 12px; right: 25px; color: var(--gold); font-size: 0.65em; font-weight: bold; }
+        .controls { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 5px 35px; }
+        .ctrl-btn {
+            background: #000; color: var(--gold); border: 1px solid var(--gold); height: var(--btn-height);
+            border-radius: 15px; font-weight: bold; cursor: pointer; font-size: 0.65em; text-transform: uppercase;
+        }
+        .play-btn { background: var(--gold); color: #000; }
+        .menu-footer {
+            width: 180px; margin: 25px auto 5px auto; background: var(--gold); color: #000;
+            height: 38px; display: flex; justify-content: center; align-items: center;
+            font-weight: 900; border-radius: 20px; cursor: pointer; text-transform: uppercase; font-size: 0.8em;
+        }
+        .outer-footer { margin: 15px 0 30px 0; color: var(--gold); font-size: 0.75em; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="app-container">
+    <header>
+        <div class="ornament-l">⚜</div>
+        <h1>Französisch</h1>
+        <div class="ornament-r">⚜</div>
+        <div class="sub-header">Premium Edition</div>
+        <div class="version-info">Version 1.1.7</div>
+        <div class="divider"></div>
+    </header>
+
+    <div class="menu-grid">
+        <button class="premium-btn" onclick="setCategory('alltag')">Alltag</button>
+        <button class="premium-btn" onclick="setCategory('basis')">Basis</button>
+        <button class="premium-btn" onclick="setCategory('wissen')">Wissen</button>
+        <button class="premium-btn" onclick="setCategory('reise')">Reise</button>
+        <button class="premium-btn" onclick="setCategory('gastro')">Gastro</button>
+        <button class="premium-btn" onclick="setCategory('amt')">Amt</button>
+    </div>
+
+    <div class="flashcard" onclick="nextCard()">
+        <div class="category-label" id="cat-label">START</div>
+        <div id="phrase-fr">Bienvenue</div>
+        <div id="phrase-phonetic">[byɛ̃-və-ny]</div>
+        <div id="phrase-de">Willkommen</div>
+        <div class="card-counter-inside" id="counter">1 / 25</div>
+    </div>
+
+    <div class="controls">
+        <button class="ctrl-btn" onclick="prevCard()">Zurück</button>
+        <button class="ctrl-btn play-btn" onclick="speak()">Audio</button>
+        <button class="ctrl-btn" onclick="nextCard()">Vor</button>
+    </div>
+
+    <div class="menu-footer" onclick="setCategory('welcome')">Menü - Start</div>
+</div>
+
+<div class="outer-footer">(c) 2026 Premium App Französisch lernen</div>
+
+<script>
+    const data = {
+        welcome: [
+            {fr: "Bonjour", ph: "[bon-shur]", de: "Guten Tag"}, {fr: "Bienvenue", ph: "[byɛ̃-və-ny]", de: "Willkommen"},
+            {fr: "Ça va ?", ph: "[sa va]", de: "Wie geht's?"}, {fr: "Enchanté", ph: "[an-shan-tay]", de: "Sehr erfreut"},
+            {fr: "C'est un plaisir", ph: "[sɛ t-un plai-sir]", de: "Es ist ein Vergnügen"}, {fr: "Bonne chance", ph: "[bon shans]", de: "Viel Glück"},
+            {fr: "À votre santé", ph: "[a votr san-tay]", de: "Auf Ihr Wohl"}, {fr: "Merci bien", ph: "[mer-si byɛ̃]", de: "Vielen Dank"},
+            {fr: "S'il vous plaît", ph: "[sil vu play]", de: "Bitte"}, {fr: "Pardon", ph: "[par-don]", de: "Verzeihung"},
+            {fr: "D'accord", ph: "[da-kor]", de: "Einverstanden"}, {fr: "À bientôt", ph: "[a byɛ̃-to]", de: "Bis bald"},
+            {fr: "Bonne journée", ph: "[bon shur-nay]", de: "Schönen Tag"}, {fr: "Bonsoir", ph: "[bon-swar]", de: "Guten Abend"},
+            {fr: "Je m'appelle...", ph: "[she ma-pel]", de: "Ich heiße..."}, {fr: "Oui", ph: "[wi]", de: "Ja"},
+            {fr: "Non", ph: "[non]", de: "Nein"}, {fr: "De rien", ph: "[de ryɛ̃]", de: "Gern geschehen"},
+            {fr: "Peut-être", ph: "[pö-tetr]", de: "Vielleicht"}, {fr: "Excusez-moi", ph: "[ex-kü-say mwa]", de: "Entschuldigen Sie"},
+            {fr: "Comment ?", ph: "[ko-man]", de: "Wie bitte?"}, {fr: "Magnifique", ph: "[ma-nyi-fiek]", de: "Wunderschön"},
+            {fr: "Parfait", ph: "[par-fay]", de: "Perfekt"}, {fr: "C'est la vie", ph: "[sɛ la vie]", de: "So ist das Leben"},
+            {fr: "Au revoir", ph: "[o re-vwar]", de: "Auf Wiedersehen"}
+        ],
+        alltag: [
+            {fr: "Ça roule ?", ph: "[sa rul]", de: "Läuft's?"}, {fr: "Pas de souci", ph: "[pa de su-si]", de: "Kein Problem"},
+            {fr: "C'est top", ph: "[sɛ top]", de: "Das ist klasse"}, {fr: "À tout à l'heure", ph: "[a tut a lör]", de: "Bis gleich"},
+            {fr: "Tu rigoles !", ph: "[tü ri-gol]", de: "Du machst Witze!"}, {fr: "Fais gaffe", ph: "[fay gaf]", de: "Pass auf"},
+            {fr: "Je m'en fiche", ph: "[she man fiesh]", de: "Ist mir egal"}, {fr: "C'est nickel", ph: "[sɛ ni-kel]", de: "Das ist einwandfrei"},
+            {fr: "Bof", ph: "[bof]", de: "Na ja / Geht so"}, {fr: "C'est dommage", ph: "[sɛ do-mash]", de: "Das ist schade"},
+            {fr: "On y va", ph: "[on i va]", de: "Gehen wir / Los"}, {fr: "Laisse tomber", ph: "[less tom-bay]", de: "Lass gut sein"},
+            {fr: "T'inquiète", ph: "[tan-kyet]", de: "Keine Sorge"}, {fr: "C'est clair", ph: "[sɛ klair]", de: "Das ist klar"},
+            {fr: "J'ai hâte", ph: "[shay at]", de: "Ich freue mich drauf"}, {fr: "Pas mal", ph: "[pa mal]", de: "Nicht schlecht"},
+            {fr: "N'importe quoi", ph: "[nam-port kwa]", de: "Quatsch"}, {fr: "C'est ouf", ph: "[sɛ uf]", de: "Das ist krass"},
+            {fr: "Allez !", ph: "[a-lay]", de: "Mach schon / Komm!"}, {fr: "Ça m'énerve", ph: "[sa may-nerv]", de: "Das nervt mich"},
+            {fr: "Carrément", ph: "[ka-ray-man]", de: "Absolut"}, {fr: "Sans doute", ph: "[san dut]", de: "Zweifellos"},
+            {fr: "Tu vois ?", ph: "[tü vwa]", de: "Siehst du?"}, {fr: "À tes souhaits", ph: "[a tay swe]", de: "Gesundheit!"},
+            {fr: "C'est dingue", ph: "[sɛ dang]", de: "Das ist verrückt"}
+        ],
+        basis: [
+            {fr: "Qui ?", ph: "[ki]", de: "Wer?"}, {fr: "Quoi ?", ph: "[kwa]", de: "Was?"}, {fr: "Où ?", ph: "[u]", de: "Wo?"},
+            {fr: "Quand ?", ph: "[kan]", de: "Wann?"}, {fr: "Comment ?", ph: "[ko-man]", de: "Wie?"}, {fr: "Pourquoi ?", ph: "[pur-kwa]", de: "Warum?"},
+            {fr: "Ici", ph: "[i-si]", de: "Hier"}, {fr: "Là-bas", ph: "[la-ba]", de: "Dort"}, {fr: "Petit", ph: "[pe-ti]", de: "Klein"},
+            {fr: "Grand", ph: "[gran]", de: "Groß"}, {fr: "Vite", ph: "[viet]", de: "Schnell"}, {fr: "Lentement", ph: "[lan-te-man]", de: "Langsam"},
+            {fr: "Beaucoup", ph: "[bo-ku]", de: "Viel"}, {fr: "Un peu", ph: "[un pö]", de: "Ein wenig"}, {fr: "Très", ph: "[tray]", de: "Sehr"},
+            {fr: "Maintenant", ph: "[mɛnt-nan]", de: "Jetzt"}, {fr: "Hier", ph: "[i-yair]", de: "Gestern"}, {fr: "Aujourd'hui", ph: "[o-shur-dwi]", de: "Heute"},
+            {fr: "Demain", ph: "[de-mɛ̃]", de: "Morgen"}, {fr: "Toujours", ph: "[tu-shur]", de: "Immer"}, {fr: "Jamais", ph: "[sha-may]", de: "Niemals"},
+            {fr: "Rien", ph: "[ryɛ̃]", de: "Nichts"}, {fr: "Tout", ph: "[tu]", de: "Alles"}, {fr: "Peut-être", ph: "[pö-tetr]", de: "Vielleicht"},
+            {fr: "Bien sûr", ph: "[byɛ̃ sür]", de: "Natürlich"}
+        ],
+        reise: [
+            {fr: "La gare", ph: "[la gar]", de: "Der Bahnhof"}, {fr: "L'hôtel", ph: "[lo-tel]", de: "Das Hotel"},
+            {fr: "Le taxi", ph: "[le tax-i]", de: "Das Taxi"}, {fr: "À gauche", ph: "[a gosh]", de: "Links"},
+            {fr: "À droite", ph: "[a drwat]", de: "Rechts"}, {fr: "Tout droit", ph: "[tu drwat]", de: "Geradeaus"},
+            {fr: "Où ?", ph: "[u]", de: "Wo?"}, {fr: "Le billet", ph: "[le bi-yay]", de: "Die Fahrkarte"},
+            {fr: "Le train", ph: "[le trɛ̃]", de: "Der Zug"}, {fr: "L'avion", ph: "[la-vyon]", de: "Das Flugzeug"},
+            {fr: "L'aéroport", ph: "[la-ay-ro-por]", de: "Der Flughafen"}, {fr: "Passeport", ph: "[pas-por]", de: "Reisepass"},
+            {fr: "La valise", ph: "[la va-lies]", de: "Der Koffer"}, {fr: "Le métro", ph: "[le may-tro]", de: "Die Metro"},
+            {fr: "C'est loin ?", ph: "[sɛ lwɛ̃]", de: "Ist es weit?"}, {fr: "C'est près ?", ph: "[sɛ pray]", de: "Ist es nah?"},
+            {fr: "La sortie", ph: "[la sor-ti]", de: "Der Ausgang"}, {fr: "L'entrée", ph: "[lan-tray]", de: "Der Eingang"},
+            {fr: "Une carte", ph: "[ün kart]", de: "Eine Karte"}, {fr: "Vélo", ph: "[vay-lo]", de: "Fahrrad"},
+            {fr: "Bateau", ph: "[ba-to]", de: "Schiff"}, {fr: "Combien ?", ph: "[kom-byɛ̃]", de: "Wie viel?"},
+            {fr: "Où est... ?", ph: "[u ɛ]", de: "Wo ist...?"}, {fr: "L'adresse", ph: "[la-dress]", de: "Die Adresse"},
+            {fr: "Bon voyage", ph: "[bon vwa-yash]", de: "Gute Reise"}
+        ],
+        gastro: [
+            {fr: "Une table", ph: "[ün tabl]", de: "Ein Tisch"}, {fr: "Le menu", ph: "[le me-nü]", de: "Die Speisekarte"},
+            {fr: "L'addition", ph: "[la-di-syon]", de: "Die Rechnung"}, {fr: "Un café", ph: "[un ka-fay]", de: "Ein Kaffee"},
+            {fr: "Le vin", ph: "[le vɛ̃]", de: "Der Wein"}, {fr: "De l'eau", ph: "[de lo]", de: "Wasser"},
+            {fr: "Le pain", ph: "[le pɛ̃]", de: "Das Brot"}, {fr: "C'est bon", ph: "[sɛ bon]", de: "Es ist gut"},
+            {fr: "Délicieux", ph: "[day-li-syö]", de: "Köstlich"}, {fr: "Le sel", ph: "[le sel]", de: "Das Salz"},
+            {fr: "Le serveur", ph: "[le ser-vör]", de: "Der Kellner"}, {fr: "Bon appétit", ph: "[bon a-pay-ti]", de: "Guten Appetit"},
+            {fr: "À table", ph: "[a tabl]", de: "Zu Tisch"}, {fr: "Un verre", ph: "[un vair]", de: "Ein Glas"},
+            {fr: "Le couteau", ph: "[le ku-to]", de: "Das Messer"}, {fr: "La fourchette", ph: "[la fur-shet]", de: "Die Gabel"},
+            {fr: "La cuillère", ph: "[la kwi-yair]", de: "Der Löffel"}, {fr: "Un plat", ph: "[un pla]", de: "Ein Gericht"},
+            {fr: "Sans sucre", ph: "[san sükr]", de: "Ohne Zucker"}, {fr: "La bière", ph: "[la byair]", de: "Das Bier"},
+            {fr: "Un dessert", ph: "[un day-sair]", de: "Ein Nachtisch"}, {fr: "S'il vous plaît", ph: "[sil vu play]", de: "Bitte"},
+            {fr: "Compris ?", ph: "[kom-pri]", de: "Inbegriffen?"}, {fr: "Petit-déjeuner", ph: "[pe-ti day-shu-nay]", de: "Frühstück"},
+            {fr: "Dîner", ph: "[di-nay]", de: "Abendessen"}
+        ],
+        amt: [
+            {fr: "La police", ph: "[la po-lies]", de: "Die Polizei"}, {fr: "Aidez-moi", de: "Help mwa]", de: "Helfen Sie mir"},
+            {fr: "Papiers", ph: "[pa-pyay]", de: "Ausweise"}, {fr: "Signature", ph: "[si-nya-tür]", de: "Unterschrift"},
+            {fr: "La mairie", ph: "[la may-rie]", de: "Das Rathaus"}, {fr: "Urgent", ph: "[ür-shan]", de: "Dringend"},
+            {fr: "Perdu", ph: "[per-dü]", de: "Verloren"}, {fr: "Le visa", ph: "[le vi-za]", de: "Das Visum"},
+            {fr: "Ambassade", ph: "[am-ba-sad]", de: "Botschaft"}, {fr: "L'argent", ph: "[lar-shan]", de: "Das Geld"},
+            {fr: "Le document", ph: "[le do-kü-man]", de: "Das Dokument"}, {fr: "Rendez-vous", ph: "[ran-day vu]", de: "Termin"},
+            {fr: "Formulaire", ph: "[for-mü-lair]", de: "Formular"}, {fr: "La loi", ph: "[la lwa]", de: "Das Gesetz"},
+            {fr: "La banque", ph: "[la bank]", de: "Die Bank"}, {fr: "Hôpital", ph: "[o-pi-tal]", de: "Krankenhaus"},
+            {fr: "Le médecin", ph: "[le may-des-ɛ̃]", de: "Der Arzt"}, {fr: "Pharmacie", ph: "[far-ma-sie]", de: "Apotheke"},
+            {fr: "Volé", ph: "[vo-lay]", de: "Gestohlen"}, {fr: "Le reçu", ph: "[le re-sü]", de: "Quittung"},
+            {fr: "L'assurance", ph: "[la-sü-rans]", de: "Versicherung"}, {fr: "L'avocat", ph: "[la-vo-ka]", de: "Anwalt"},
+            {fr: "Tribunal", ph: "[tri-bü-nal]", de: "Gericht"}, {fr: "Identité", ph: "[i-dan-ti-tay]", de: "Identität"},
+            {fr: "Plainte", ph: "[plant]", de: "Beschwerde"}
+        ],
+        wissen: [
+            {fr: "Il fait beau", ph: "[il fay bo]", de: "Schönes Wetter"}, {fr: "Maison", ph: "[may-zon]", de: "Haus"},
+            {fr: "Travail", ph: "[tra-vai]", de: "Arbeit"}, {fr: "Famille", ph: "[fa-miy]", de: "Familie"},
+            {fr: "Amis", ph: "[a-mi]", de: "Freunde"}, {fr: "Quelle heure ?", ph: "[kel ör]", de: "Wie spät?"},
+            {fr: "Ville", ph: "[viel]", de: "Stadt"}, {fr: "Village", ph: "[vi-lash]", de: "Dorf"},
+            {fr: "École", ph: "[ay-kol]", de: "Schule"}, {fr: "Ordinateur", ph: "[or-di-na-tör]", de: "Computer"},
+            {fr: "Cher", ph: "[shair]", de: "Teuer"}, {fr: "Bon marché", ph: "[bon mar-shay]", de: "Billig"},
+            {fr: "Ouvrir", ph: "[u-vrir]", de: "Öffnen"}, {fr: "Fermer", ph: "[fer-may]", de: "Schließen"},
+            {fr: "Musique", ph: "[mü-ziek]", de: "Musik"}, {fr: "Sport", ph: "[spor]", de: "Sport"},
+            {fr: "Journal", ph: "[shur-nal]", de: "Zeitung"}, {fr: "Météo", ph: "[may-tay-o]", de: "Wetterbericht"},
+            {fr: "Téléphone", ph: "[tay-lay-fon]", de: "Telefon"}, {fr: "Rue", ph: "[rü]", de: "Straße"},
+            {fr: "Livre", ph: "[lievr]", de: "Buch"}, {fr: "Cadeau", ph: "[ka-do]", de: "Geschenk"},
+            {fr: "Voiture", ph: "[vwa-tür]", de: "Auto"}, {fr: "Soleil", ph: "[so-lay]", de: "Sonne"},
+            {fr: "La lune", ph: "[la lün]", de: "Der Mond"}
+        ]
+    };
+
+    let currentCat = 'welcome'; let index = 0;
+    function setCategory(cat) { currentCat = cat; index = 0; updateCard(); }
+    function updateCard() {
+        const item = data[currentCat][index];
+        document.getElementById('cat-label').innerText = currentCat;
+        document.getElementById('phrase-fr').innerText = item.fr;
+        document.getElementById('phrase-phonetic').innerText = item.ph;
+        document.getElementById('phrase-de').innerText = item.de;
+        document.getElementById('counter').innerText = `${index + 1} / ${data[currentCat].length}`;
+        speak();
+    }
+    function nextCard() { index = (index + 1) % data[currentCat].length; updateCard(); }
+    function prevCard() { index = (index - 1 + data[currentCat].length) % data[currentCat].length; updateCard(); }
+    function speak() {
+        const text = document.getElementById('phrase-fr').innerText;
+        const msg = new SpeechSynthesisUtterance(); msg.text = text; msg.lang = 'fr-FR'; msg.rate = 0.85;
+        window.speechSynthesis.speak(msg);
+    }
+    window.onload = () => updateCard();
+</script>
+
+</body>
+</html>
