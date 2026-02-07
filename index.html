@@ -74,9 +74,9 @@ eiterung<!DOCTYPE html>
         <button class="premium-btn" onclick="setCategory('gastro')">Gastro</button>
         <button class="premium-btn" onclick="setCategory('amt')">Amt</button>
 
-        <button class="premium-btn" onclick="setCategory('reise')">Reise</button>
-        <button class="premium-btn" onclick="setCategory('gastro')">Gastro</button>
-        <button class="premium-btn" onclick="setCategory('amt')">Amt</button>
+        <button class="premium-btn" onclick="setCategory('fragen')">Fragen</button>
+        <button class="premium-btn" onclick="setCategory('a1-wissen')">A1-Wissen</button>
+        <button class="premium-btn" onclick="setCategory('a2-wissen')">A2-Wissen</button>
     </div>
 
     <div class="flashcard" onclick="nextCard()">
@@ -200,7 +200,56 @@ eiterung<!DOCTYPE html>
             {fr: "Livre", ph: "[lievr]", de: "Buch"}, {fr: "Cadeau", ph: "[ka-do]", de: "Geschenk"},
             {fr: "Voiture", ph: "[vwa-tür]", de: "Auto"}, {fr: "Soleil", ph: "[so-lay]", de: "Sonne"},
             {fr: "La lune", ph: "[la lün]", de: "Der Mond"}
+        ],
+
+        fragen: [
+            {fr: "La gare", ph: "[la gar]", de: "Der Bahnhof"}, {fr: "L'hôtel", ph: "[lo-tel]", de: "Das Hotel"},
+            {fr: "Le taxi", ph: "[le tax-i]", de: "Das Taxi"}, {fr: "À gauche", ph: "[a gosh]", de: "Links"},
+            {fr: "À droite", ph: "[a drwat]", de: "Rechts"}, {fr: "Tout droit", ph: "[tu drwat]", de: "Geradeaus"},
+            {fr: "Où ?", ph: "[u]", de: "Wo?"}, {fr: "Le billet", ph: "[le bi-yay]", de: "Die Fahrkarte"},
+            {fr: "Le train", ph: "[le trɛ̃]", de: "Der Zug"}, {fr: "L'avion", ph: "[la-vyon]", de: "Das Flugzeug"},
+            {fr: "L'aéroport", ph: "[la-ay-ro-por]", de: "Der Flughafen"}, {fr: "Passeport", ph: "[pas-por]", de: "Reisepass"},
+            {fr: "La valise", ph: "[la va-lies]", de: "Der Koffer"}, {fr: "Le métro", ph: "[le may-tro]", de: "Die Metro"},
+            {fr: "C'est loin ?", ph: "[sɛ lwɛ̃]", de: "Ist es weit?"}, {fr: "C'est près ?", ph: "[sɛ pray]", de: "Ist es nah?"},
+            {fr: "La sortie", ph: "[la sor-ti]", de: "Der Ausgang"}, {fr: "L'entrée", ph: "[lan-tray]", de: "Der Eingang"},
+            {fr: "Une carte", ph: "[ün kart]", de: "Eine Karte"}, {fr: "Vélo", ph: "[vay-lo]", de: "Fahrrad"},
+            {fr: "Bateau", ph: "[ba-to]", de: "Schiff"}, {fr: "Combien ?", ph: "[kom-byɛ̃]", de: "Wie viel?"},
+            {fr: "Où est... ?", ph: "[u ɛ]", de: "Wo ist...?"}, {fr: "L'adresse", ph: "[la-dress]", de: "Die Adresse"},
+            {fr: "Bon voyage", ph: "[bon vwa-yash]", de: "Gute Reise"}
+        ],
+     
+        a1-wissen: [
+            {fr: "Une table", ph: "[ün tabl]", de: "Ein Tisch"}, {fr: "Le menu", ph: "[le me-nü]", de: "Die Speisekarte"},
+            {fr: "L'addition", ph: "[la-di-syon]", de: "Die Rechnung"}, {fr: "Un café", ph: "[un ka-fay]", de: "Ein Kaffee"},
+            {fr: "Le vin", ph: "[le vɛ̃]", de: "Der Wein"}, {fr: "De l'eau", ph: "[de lo]", de: "Wasser"},
+            {fr: "Le pain", ph: "[le pɛ̃]", de: "Das Brot"}, {fr: "C'est bon", ph: "[sɛ bon]", de: "Es ist gut"},
+            {fr: "Délicieux", ph: "[day-li-syö]", de: "Köstlich"}, {fr: "Le sel", ph: "[le sel]", de: "Das Salz"},
+            {fr: "Le serveur", ph: "[le ser-vör]", de: "Der Kellner"}, {fr: "Bon appétit", ph: "[bon a-pay-ti]", de: "Guten Appetit"},
+            {fr: "À table", ph: "[a tabl]", de: "Zu Tisch"}, {fr: "Un verre", ph: "[un vair]", de: "Ein Glas"},
+            {fr: "Le couteau", ph: "[le ku-to]", de: "Das Messer"}, {fr: "La fourchette", ph: "[la fur-shet]", de: "Die Gabel"},
+            {fr: "La cuillère", ph: "[la kwi-yair]", de: "Der Löffel"}, {fr: "Un plat", ph: "[un pla]", de: "Ein Gericht"},
+            {fr: "Sans sucre", ph: "[san sükr]", de: "Ohne Zucker"}, {fr: "La bière", ph: "[la byair]", de: "Das Bier"},
+            {fr: "Un dessert", ph: "[un day-sair]", de: "Ein Nachtisch"}, {fr: "S'il vous plaît", ph: "[sil vu play]", de: "Bitte"},
+            {fr: "Compris ?", ph: "[kom-pri]", de: "Inbegriffen?"}, {fr: "Petit-déjeuner", ph: "[pe-ti day-shu-nay]", de: "Frühstück"},
+            {fr: "Dîner", ph: "[di-nay]", de: "Abendessen"}
+        ],
+        a2-wissen: [
+            {fr: "La police", ph: "[la po-lies]", de: "Die Polizei"}, {fr: "Aidez-moi", de: "Help mwa]", de: "Helfen Sie mir"},
+            {fr: "Papiers", ph: "[pa-pyay]", de: "Ausweise"}, {fr: "Signature", ph: "[si-nya-tür]", de: "Unterschrift"},
+            {fr: "La mairie", ph: "[la may-rie]", de: "Das Rathaus"}, {fr: "Urgent", ph: "[ür-shan]", de: "Dringend"},
+            {fr: "Perdu", ph: "[per-dü]", de: "Verloren"}, {fr: "Le visa", ph: "[le vi-za]", de: "Das Visum"},
+            {fr: "Ambassade", ph: "[am-ba-sad]", de: "Botschaft"}, {fr: "L'argent", ph: "[lar-shan]", de: "Das Geld"},
+            {fr: "Le document", ph: "[le do-kü-man]", de: "Das Dokument"}, {fr: "Rendez-vous", ph: "[ran-day vu]", de: "Termin"},
+            {fr: "Formulaire", ph: "[for-mü-lair]", de: "Formular"}, {fr: "La loi", ph: "[la lwa]", de: "Das Gesetz"},
+            {fr: "La banque", ph: "[la bank]", de: "Die Bank"}, {fr: "Hôpital", ph: "[o-pi-tal]", de: "Krankenhaus"},
+            {fr: "Le médecin", ph: "[le may-des-ɛ̃]", de: "Der Arzt"}, {fr: "Pharmacie", ph: "[far-ma-sie]", de: "Apotheke"},
+            {fr: "Volé", ph: "[vo-lay]", de: "Gestohlen"}, {fr: "Le reçu", ph: "[le re-sü]", de: "Quittung"},
+            {fr: "L'assurance", ph: "[la-sü-rans]", de: "Versicherung"}, {fr: "L'avocat", ph: "[la-vo-ka]", de: "Anwalt"},
+            {fr: "Tribunal", ph: "[tri-bü-nal]", de: "Gericht"}, {fr: "Identité", ph: "[i-dan-ti-tay]", de: "Identität"},
+            {fr: "Plainte", ph: "[plant]", de: "Beschwerde"}
         ]
+        
+        
     };
 
     let currentCat = 'welcome'; let index = 0;
