@@ -75,8 +75,8 @@ eiterung<!DOCTYPE html>
         <button class="premium-btn" onclick="setCategory('amt')">Amt</button>
 
         <button class="premium-btn" onclick="setCategory('fragen')">Fragen</button>
-        <button class="premium-btn" onclick="setCategory('a1-wissen')">A1-Wissen</button>
-        <button class="premium-btn" onclick="setCategory('a2-wissen')">A2-Wissen</button>
+        <button class="premium-btn" onclick="setCategory('a1')">A1-Wissen</button>
+        <button class="premium-btn" onclick="setCategory('a2')">A2-Wissen</button>
     </div>
 
     <div class="flashcard" onclick="nextCard()">
@@ -115,6 +115,7 @@ eiterung<!DOCTYPE html>
             {fr: "Parfait", ph: "[par-fay]", de: "Perfekt"}, {fr: "C'est la vie", ph: "[sɛ la vie]", de: "So ist das Leben"},
             {fr: "Au revoir", ph: "[o re-vwar]", de: "Auf Wiedersehen"}
         ],
+        
         alltag: [
             {fr: "Ça roule ?", ph: "[sa rul]", de: "Läuft's?"}, {fr: "Pas de souci", ph: "[pa de su-si]", de: "Kein Problem"},
             {fr: "C'est top", ph: "[sɛ top]", de: "Das ist klasse"}, {fr: "À tout à l'heure", ph: "[a tut a lör]", de: "Bis gleich"},
@@ -130,6 +131,7 @@ eiterung<!DOCTYPE html>
             {fr: "Tu vois ?", ph: "[tü vwa]", de: "Siehst du?"}, {fr: "À tes souhaits", ph: "[a tay swe]", de: "Gesundheit!"},
             {fr: "C'est dingue", ph: "[sɛ dang]", de: "Das ist verrückt"}
         ],
+        
         basis: [
             {fr: "Qui ?", ph: "[ki]", de: "Wer?"}, {fr: "Quoi ?", ph: "[kwa]", de: "Was?"}, {fr: "Où ?", ph: "[u]", de: "Wo?"},
             {fr: "Quand ?", ph: "[kan]", de: "Wann?"}, {fr: "Comment ?", ph: "[ko-man]", de: "Wie?"}, {fr: "Pourquoi ?", ph: "[pur-kwa]", de: "Warum?"},
@@ -141,6 +143,7 @@ eiterung<!DOCTYPE html>
             {fr: "Rien", ph: "[ryɛ̃]", de: "Nichts"}, {fr: "Tout", ph: "[tu]", de: "Alles"}, {fr: "Peut-être", ph: "[pö-tetr]", de: "Vielleicht"},
             {fr: "Bien sûr", ph: "[byɛ̃ sür]", de: "Natürlich"}
         ],
+        
         reise: [
             {fr: "La gare", ph: "[la gar]", de: "Der Bahnhof"}, {fr: "L'hôtel", ph: "[lo-tel]", de: "Das Hotel"},
             {fr: "Le taxi", ph: "[le tax-i]", de: "Das Taxi"}, {fr: "À gauche", ph: "[a gosh]", de: "Links"},
@@ -156,6 +159,7 @@ eiterung<!DOCTYPE html>
             {fr: "Où est... ?", ph: "[u ɛ]", de: "Wo ist...?"}, {fr: "L'adresse", ph: "[la-dress]", de: "Die Adresse"},
             {fr: "Bon voyage", ph: "[bon vwa-yash]", de: "Gute Reise"}
         ],
+        
         gastro: [
             {fr: "Une table", ph: "[ün tabl]", de: "Ein Tisch"}, {fr: "Le menu", ph: "[le me-nü]", de: "Die Speisekarte"},
             {fr: "L'addition", ph: "[la-di-syon]", de: "Die Rechnung"}, {fr: "Un café", ph: "[un ka-fay]", de: "Ein Kaffee"},
@@ -171,6 +175,7 @@ eiterung<!DOCTYPE html>
             {fr: "Compris ?", ph: "[kom-pri]", de: "Inbegriffen?"}, {fr: "Petit-déjeuner", ph: "[pe-ti day-shu-nay]", de: "Frühstück"},
             {fr: "Dîner", ph: "[di-nay]", de: "Abendessen"}
         ],
+        
         amt: [
             {fr: "La police", ph: "[la po-lies]", de: "Die Polizei"}, {fr: "Aidez-moi", de: "Help mwa]", de: "Helfen Sie mir"},
             {fr: "Papiers", ph: "[pa-pyay]", de: "Ausweise"}, {fr: "Signature", ph: "[si-nya-tür]", de: "Unterschrift"},
@@ -186,6 +191,7 @@ eiterung<!DOCTYPE html>
             {fr: "Tribunal", ph: "[tri-bü-nal]", de: "Gericht"}, {fr: "Identité", ph: "[i-dan-ti-tay]", de: "Identität"},
             {fr: "Plainte", ph: "[plant]", de: "Beschwerde"}
         ],
+        
         erweiterung: [
             {fr: "Il fait beau", ph: "[il fay bo]", de: "Schönes Wetter"}, {fr: "Maison", ph: "[may-zon]", de: "Haus"},
             {fr: "Travail", ph: "[tra-vai]", de: "Arbeit"}, {fr: "Famille", ph: "[fa-miy]", de: "Familie"},
@@ -218,7 +224,7 @@ eiterung<!DOCTYPE html>
             {fr: "Bon voyage", ph: "[bon vwa-yash]", de: "Gute Reise"}
         ],
      
-        a1-wissen: [
+        a1: [
             {fr: "Une table", ph: "[ün tabl]", de: "Ein Tisch"}, {fr: "Le menu", ph: "[le me-nü]", de: "Die Speisekarte"},
             {fr: "L'addition", ph: "[la-di-syon]", de: "Die Rechnung"}, {fr: "Un café", ph: "[un ka-fay]", de: "Ein Kaffee"},
             {fr: "Le vin", ph: "[le vɛ̃]", de: "Der Wein"}, {fr: "De l'eau", ph: "[de lo]", de: "Wasser"},
@@ -233,7 +239,8 @@ eiterung<!DOCTYPE html>
             {fr: "Compris ?", ph: "[kom-pri]", de: "Inbegriffen?"}, {fr: "Petit-déjeuner", ph: "[pe-ti day-shu-nay]", de: "Frühstück"},
             {fr: "Dîner", ph: "[di-nay]", de: "Abendessen"}
         ],
-        a2-wissen: [
+        
+        a2: [
             {fr: "La police", ph: "[la po-lies]", de: "Die Polizei"}, {fr: "Aidez-moi", de: "Help mwa]", de: "Helfen Sie mir"},
             {fr: "Papiers", ph: "[pa-pyay]", de: "Ausweise"}, {fr: "Signature", ph: "[si-nya-tür]", de: "Unterschrift"},
             {fr: "La mairie", ph: "[la may-rie]", de: "Das Rathaus"}, {fr: "Urgent", ph: "[ür-shan]", de: "Dringend"},
